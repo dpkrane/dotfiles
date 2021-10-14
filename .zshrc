@@ -13,4 +13,3 @@ export WORKON_HOME=$HOME/.virtualenvs
 source ~/.local/bin/virtualenvwrapper.sh
 export EDITOR=/usr/bin/nvim
 export VISAL=/usr/bin/nvim
-
