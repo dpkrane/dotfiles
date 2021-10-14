@@ -2,38 +2,37 @@
 " Когда-нибудь все будет \"причесано\" и задокументировано должным образом
 syntax enable
 syntax sync minlines=256
-filetype indent on
 filetype plugin indent on    " required
  
 set nocompatible
 set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16 "Это light версия
-set inccommand=split
-set number
 set hlsearch
 set incsearch 
+set inccommand=split
 set mousehide
+set mousemodel=popup
+set mouse=a
+set scrolloff=7
 set showtabline=1
+set number
 set ruler
 set formatoptions+=j
-set mousemodel=popup
 set backspace=indent,eol,start whichwrap+=<,>,[,]
 set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set autoindent
-set fileformat=unix
-set textwidth=79
+set textwidth=80
 set colorcolumn=80
 set nobackup
 set noswapfile
+set fileformat=unix
 set encoding=utf-8
 set termencoding=utf-8
-set mouse=a
-set scrolloff=7
 set foldmethod=indent
 set foldlevel=99
-set clipboard=unnamedplus, unnamed
+set clipboard=unnamedplus,unnamed
 set keymap=russian-jcukenwin
 set iminsert=0
 set imsearch=0
@@ -43,16 +42,14 @@ set matchtime=0         " don't blink when matching
 set guioptions-=m  " remove menu bar
 set guioptions-=T   " remove toolbar
 set guioptions-=r  " remove right-hand scroll bar
-set switchbuf=useopen
-set guioptions= "Отключаем панели прокрутки в GUI
-set showtabline=0 "Отключаем панель табов (окошки FTW)
-set termguicolors
-set background=dark
-set wrap linebreak nolist "Данная вариация работает как wrap...
-set ttimeoutlen=10 "Понижаем задержку ввода escape последовательностей
 set guioptions-=L " убираем полосы прокрутки слева
 set guioptions-=R
 set guioptions-=l
+set switchbuf=useopen
+set guioptions= "Отключаем панели прокрутки в GUI
+set showtabline=0 "Отключаем панель табов (окошки FTW)
+set wrap linebreak nolist "Данная вариация работает как wrap...
+set ttimeoutlen=10 "Понижаем задержку ввода escape последовательностей
 set fillchars=stl:\ ,stlnc:\ ,vert:│
 set listchars=tab:»\ ,trail:·,eol:¶,extends:→,precedes:←,nbsp:×
 set regexpengine=1
@@ -66,8 +63,8 @@ set display+=lastline " Display lastline instead of @
 set noerrorbells visualbell t_vb= " No annoying sound on errors
 autocmd BufWrite *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
 call plug#begin('~/.config/nvim/plugged')
-" On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'ycm-core/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
@@ -76,30 +73,34 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 Plug 'hynek/vim-python-pep8-indent'           " PEP8 indent
-"colorscheme
+"colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
 Plug 'kaicataldo/material.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'challenger-deep-theme/vim'
-" Initialize pgin system
 call plug#end()
+
 "colorscheme gruvbox
 "colorscheme OceanicNext
 "colorscheme material
 "colorscheme ayu
 "colorscheme sublimemonokai
+set termguicolors
+set background=dark
 colorscheme challenger_deep
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
 let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
 let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
 let g:Powerline_symbols='unicode' "Поддержка unicode
 let g:airline#extensions#xkblayout#enabled = 0 "Про это позже расскажу
-let python_highlight_all=1
 let &t_SI.="\e[5 q" "SI = режим вставки
 let &t_SR.="\e[3 q" "SR = режим замены
 let &t_EI.="\e[1 q" "EI = нормальный режим
+" --- Python ---
+let python_highlight_all=1
+let python_slow_sync=1
 "=====================================================
 " Python-mode settings
 "=====================================================
@@ -163,17 +164,3 @@ nmap <F1> <nop>                 " unmap <F1> with help
 map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
 nnoremap <space> za
 nmap <F2> :set list!<CR>
-" --- Python ---
-let python_highlight_all=1
-let python_highlight_exceptions=0
-let python_highlight_builtins=0
-let python_slow_sync=1
-autocmd FileType python setlocal completeopt-=preview
-autocmd FileType python setlocal expandtab shiftwidth=4 tabstop=8
-\ formatoptions+=croq softtabstop=4 smartindent
-\ cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-autocmd FileType pyrex setlocal expandtab shiftwidth=4 tabstop=8 softtabstop=4 smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class,with
-let g:syntastic_python_checkers = ['flake8', 'python']
-let g:syntastic_python_flake8_args='--ignore=E121,E128,E711,E301,E261,E241,E124,E126,E721
-\ --max-line-length=80'
-autocmd FileType python map <buffer> <leader>8 :PymodeLint<CR>
