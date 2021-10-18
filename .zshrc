@@ -8,6 +8,7 @@ zstyle ':omz:update' frequency 13
 ENABLE_CORRECTION="true"
 plugins=(
     git
+    git-prompt
     zsh-autosuggestions
     zsh-syntax-highlighting
 )
@@ -17,3 +18,4 @@ export WORKON_HOME=$HOME/.virtualenvs
 source ~/.local/bin/virtualenvwrapper.sh
 export EDITOR=/usr/bin/nvim
 export VISAL=/usr/bin/nvim
+source /usr/share/zsh/manjaro-zsh-config

@@ -2,6 +2,7 @@
 " Когда-нибудь все будет \"причесано\" и задокументировано должным образом
 syntax enable
 syntax sync minlines=256
+filetype on
 filetype plugin indent on    " required
  
 set nocompatible
