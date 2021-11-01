@@ -9,7 +9,7 @@ set nocompatible
 set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16 "Это light версия
 set hlsearch
 set incsearch 
-set inccommand=split
+"set inccommand=split
 set mousehide
 set mousemodel=popup
 set mouse=a
@@ -66,14 +66,14 @@ autocmd BufWrite *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ycm-core/YouCompleteMe'
+"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+"Plug 'ycm-core/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
-Plug 'nvie/vim-flake8'
+"Plug 'nvie/vim-flake8'
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-fugitive'
-Plug 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
-Plug 'hynek/vim-python-pep8-indent'           " PEP8 indent
+"Plug 'tpope/vim-fugitive'
+"Plug 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
+"Plug 'hynek/vim-python-pep8-indent'           " PEP8 indent
 "colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
@@ -120,12 +120,12 @@ let python_slow_sync=1
 " ]] Jump on next class or function (normal, visual, operator modes)
 " [M Jump on previous class or method (normal, visual, operator modes)
 " ]M Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 1
+let g:pymode_rope = 0 
 " Documentation
 let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 " Linting
-let g:pymode_lint = 1
+let g:pymode_lint = 0
 let g:pymode_lint_checkers = 'pylint,pep8,pyflakes'
 let g:pymode_lint_cwindow = 1
 let g:pymode_lint_ignore="E501,W601,C0110,C0111"
@@ -143,7 +143,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 " Don't autofold code
 let g:pymode_folding = 0
 " Get possibility to run Python code
-let g:pymode_run = 0
+let g:pymode_run = 1
 " Other options
 let g:pymode_options_colorcolumn = 0
 " CTRL-Z is Undo
@@ -167,11 +167,13 @@ nmap <F1> <nop>                 " unmap <F1> with help
 map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
 nnoremap <space> za
 nmap <F2> :set list!<CR>
-inoremap  <Up>     <NOP>
-inoremap  <Down>   <NOP>
-inoremap  <Left>   <NOP>
-inoremap  <Right>  <NOP>
+"#inoremap  <Up>     <NOP>
+"#inoremap  <Down>   <NOP>
+"#inoremap  <Left>   <NOP>
+"#inoremap  <Right>  <NOP>
 noremap   <Up>     <NOP>
 noremap   <Down>   <NOP>
 noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
+autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec 'python3' shellescape(@%, 1)<CR>
