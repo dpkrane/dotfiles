@@ -65,7 +65,7 @@ set noerrorbells visualbell t_vb= " No annoying sound on errors
 autocmd BufWrite *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'

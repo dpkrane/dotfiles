@@ -1,5 +1,4 @@
-export WORKON_HOME=$HOME/.virtualenvs
-source ~/.local/bin/virtualenvwrapper.sh
+ZSH_THEME="frisk"
 export EDITOR=/usr/bin/vim
 export VISAL=/usr/bin/vim
 export TERM=xterm-256color
@@ -26,11 +25,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
-#export EDITOR=/usr/bin/nano
-#export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
-
-
 ## Keybindings section
 bindkey -e
 bindkey '^[[7~' beginning-of-line                               # Home key
@@ -82,15 +77,15 @@ export LESS=-R
 
 ## Plugins section: Enable fish style features
 # Use syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # Use history substring search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+#source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 # bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
-bindkey '^[[B' history-substring-search-down
+#bindkey "$terminfo[kcuu1]" history-substring-search-up
+#bindkey "$terminfo[kcud1]" history-substring-search-down
+#bindkey '^[[A' history-substring-search-up			
+#bindkey '^[[B' history-substring-search-down
 
 # Offer to install missing package if command is not found
 if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
@@ -202,7 +197,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 export ZSH="/home/owner/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' frequency 13
 ENABLE_CORRECTION="true"
@@ -211,7 +206,10 @@ plugins=(
     git-prompt
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-history-substring-search
+    colored-man-pages
 )
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 source $ZSH/oh-my-zsh.sh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-##===================================================================================
+
+
