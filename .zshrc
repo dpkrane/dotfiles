@@ -19,3 +19,4 @@ source ~/.local/bin/virtualenvwrapper.sh
 export EDITOR=/usr/bin/nvim
 export VISAL=/usr/bin/nvim
 source /usr/share/zsh/manjaro-zsh-config
+export TERM=xterm-256color
