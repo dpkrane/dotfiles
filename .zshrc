@@ -1,4 +1,5 @@
-ZSH_THEME="frisk"
+export WORKON_HOME=$HOME/.virtualenvs
+source ~/.local/bin/virtualenvwrapper.sh
 export EDITOR=/usr/bin/vim
 export VISAL=/usr/bin/vim
 export TERM=xterm-256color
@@ -25,7 +26,10 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
+#export EDITOR=/usr/bin/nano
+#export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
+
 ## Keybindings section
 bindkey -e
 bindkey '^[[7~' beginning-of-line                               # Home key
@@ -73,33 +77,11 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-R
-
-
-## Plugins section: Enable fish style features
-# Use syntax highlighting
-#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# Use history substring search
-#source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-# bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
-#bindkey "$terminfo[kcuu1]" history-substring-search-up
-#bindkey "$terminfo[kcud1]" history-substring-search-down
-#bindkey '^[[A' history-substring-search-up			
-#bindkey '^[[B' history-substring-search-down
-
-# Offer to install missing package if command is not found
-if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
-    source /usr/share/zsh/functions/command-not-found.zsh
-    export PKGFILE_PROMPT_INSTALL_MISSING=1
-fi
-
-# Set terminal window and tab/icon title
-#
-# usage: title short_tab_title [long_window_title]
-#
-# See: http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#ss3.1
-# Fully supports screen and probably most modern xterm and rxvt
-# (In screen, only short_tab_title is used)
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up			
+bindkey '^[[B' history-substring-search-down
 function title {
   emulate -L zsh
   setopt prompt_subst
@@ -206,10 +188,16 @@ plugins=(
     git-prompt
     zsh-autosuggestions
     zsh-syntax-highlighting
-    zsh-history-substring-search
     colored-man-pages
+    command-not-found
 )
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 source $ZSH/oh-my-zsh.sh
-
-
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+##===================================================================================
+# enable substitution for prompt
+setopt prompt_subst
+# Maia prompt
+PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b "
+RPROMPT="%{$fg[red]%} %(?..[%?])" 
+# Print a greeting message when shell is started
+echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
