@@ -3,7 +3,7 @@ source ~/.local/bin/virtualenvwrapper.sh
 export EDITOR=/usr/bin/vim
 export VISAL=/usr/bin/vim
 export TERM=xterm-256color
-## Options section
+# Options section
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
 setopt nocaseglob                                               # Case insensitive globbing
@@ -15,7 +15,7 @@ setopt appendhistory                                            # Immediately ap
 setopt histignorealldups                                        # If a new command is a duplicate, remove the older one
 setopt autocd                                                   # if only directory path is entered, cd there.
 setopt inc_append_history                                       # save commands are added to the history immediately, otherwise only when shell exits.
-
+#
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'       # Case insensitive tab completion
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"         # Colored completion (different colors for dirs/files/etc)
 zstyle ':completion:*' rehash true                              # automatically find new executables in path 
@@ -26,10 +26,7 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
-#export EDITOR=/usr/bin/nano
-#export VISUAL=/usr/bin/nano
 WORDCHARS=${WORDCHARS//\/[&.;]}                                 # Don't consider certain characters part of the word
-
 ## Keybindings section
 bindkey -e
 bindkey '^[[7~' beginning-of-line                               # Home key
@@ -56,19 +53,19 @@ bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
-
-## Alias section 
+#
+### Alias section 
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 alias gitu='git add . && git commit && git push'
-
-# Theming section  
+#
+## Theming section  
 autoload -U compinit colors zcalc
 compinit -d
 colors
-
-# Color man pages
+#
+## Color man pages
 export LESS_TERMCAP_mb=$'\E[01;32m'
 export LESS_TERMCAP_md=$'\E[01;32m'
 export LESS_TERMCAP_me=$'\E[0m'
@@ -77,11 +74,29 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-R
+#
+#
+### Plugins section: Enable fish style features
+## Use syntax highlighting
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+## Use history substring search
+#source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+## bind UP and DOWN arrow keys to history substring search
 zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-bindkey '^[[A' history-substring-search-up			
-bindkey '^[[B' history-substring-search-down
+#
+# Offer to install missing package if command is not found
+#if [[ -r /usr/share/zsh/functions/command-not-found.zsh ]]; then
+#    source /usr/share/zsh/functions/command-not-found.zsh
+#    export PKGFILE_PROMPT_INSTALL_MISSING=1
+#fi
+#
+## Set terminal window and tab/icon title
+##
+## usage: title short_tab_title [long_window_title]
+##
+## See: http://www.faqs.org/docs/Linux-mini/Xterm-Title.html#ss3.1
+## Fully supports screen and probably most modern xterm and rxvt
+## (In screen, only short_tab_title is used)
 function title {
   emulate -L zsh
   setopt prompt_subst
@@ -115,7 +130,7 @@ function title {
 ZSH_THEME_TERM_TAB_TITLE_IDLE="%15<..<%~%<<" #15 char left truncated PWD
 ZSH_THEME_TERM_TITLE_IDLE="%n@%m:%~"
 
-# Runs before showing the prompt
+## Runs before showing the prompt
 function mzc_termsupport_precmd {
   [[ "${DISABLE_AUTO_TITLE:-}" == true ]] && return
   title $ZSH_THEME_TERM_TAB_TITLE_IDLE $ZSH_THEME_TERM_TITLE_IDLE
@@ -179,7 +194,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 export ZSH="/home/owner/.oh-my-zsh"
-#ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' frequency 13
 ENABLE_CORRECTION="true"
@@ -192,12 +206,14 @@ plugins=(
     command-not-found
 )
 source $ZSH/oh-my-zsh.sh
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-##===================================================================================
-# enable substitution for prompt
-setopt prompt_subst
-# Maia prompt
-PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b "
-RPROMPT="%{$fg[red]%} %(?..[%?])" 
-# Print a greeting message when shell is started
-echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
+case $(basename "$(cat "/proc/$PPID/comm")") in
+    login)
+        setopt prompt_subst
+        PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b "
+        RPROMPT="%{$fg[red]%} %(?..[%?])" 
+    ;;
+    *)
+        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+        export ZSH_THEME="powerlevel10k/powerlevel10k"
+    ;;
+esac
