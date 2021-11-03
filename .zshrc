@@ -1,5 +1,5 @@
-export WORKON_HOME=$HOME/.virtualenvs
-source ~/.local/bin/virtualenvwrapper.sh
+#export WORKON_HOME=$HOME/.virtualenvs
+#source ~/.local/bin/virtualenvwrapper.sh
 export EDITOR=/usr/bin/vim
 export VISAL=/usr/bin/vim
 export TERM=xterm-256color
@@ -209,11 +209,19 @@ source $ZSH/oh-my-zsh.sh
 case $(basename "$(cat "/proc/$PPID/comm")") in
     login)
         setopt prompt_subst
-        PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b "
-        RPROMPT="%{$fg[red]%} %(?..[%?])" 
+        #PROMPT="%B%{$fg[cyan]%}%(4~|%-1~/.../%2~|%~)%u%b >%{$fg[cyan]%}>%B%(?.%{$fg[cyan]%}.%{$fg[red]%})>%{$reset_color%}%b "
+        #RPROMPT+='%{$fg[red]%} %(?..[%?]) $(git_prompt_info)'
+        PROMPT="%m : %d>>>"
+        RPROMPT="[%?] %h  %T $(git_prompt_info)"
+        ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[blue]%}git:(%{$fg[red]%}"
+        ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
+        ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg[yellow]%}✗"
+        ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%})"
     ;;
     *)
         [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
         export ZSH_THEME="powerlevel10k/powerlevel10k"
     ;;
 esac
+
+
