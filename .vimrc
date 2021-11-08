@@ -5,6 +5,8 @@ syntax sync minlines=256
 filetype on
 filetype plugin indent on    " required
 
+set t_Co=256
+
 set nocompatible
 set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16 "Это light версия
 set hlsearch
@@ -94,7 +96,7 @@ set termguicolors
 set background=dark
 colorscheme challenger_deep
 
-let g:airline_theme='tomorrow'
+let g:airline_theme= 'base16'
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
 "let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
 "let g:airline_section_z = \"\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
