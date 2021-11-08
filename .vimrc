@@ -4,11 +4,11 @@ syntax enable
 syntax sync minlines=256
 filetype on
 filetype plugin indent on    " required
- 
+
 set nocompatible
 set guifont=Fura\ Code\ Light\ Nerd\ Font\ Complete:h16 "Это light версия
 set hlsearch
-set incsearch 
+set incsearch
 "set inccommand=split
 set mousehide
 set mousemodel=popup
@@ -65,12 +65,14 @@ set noerrorbells visualbell t_vb= " No annoying sound on errors
 autocmd BufWrite *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 "Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 "Plug 'nvie/vim-flake8'
+Plug 'dense-analysis/ale'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 "Plug 'tpope/vim-fugitive'
 "Plug 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 "Plug 'hynek/vim-python-pep8-indent'           " PEP8 indent
@@ -92,11 +94,16 @@ set termguicolors
 set background=dark
 colorscheme challenger_deep
 
+let g:airline_theme='tomorrow'
 let g:airline_powerline_fonts = 1 "Включить поддержку Powerline шрифтов
-let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
+"let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
+"let g:airline_section_z = \"\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
 let g:Powerline_symbols='unicode' "Поддержка unicode
-let g:airline#extensions#xkblayout#enabled = 0 "Про это позже расскажу
+"let g:airline#extensions#xkblayout#enabled = 0 "Про это позже расскажу
+"let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
+
+
+
 
 let &t_SI.="\e[5 q" "SI = режим вставки
 let &t_SR.="\e[3 q" "SR = режим замены
@@ -120,60 +127,63 @@ let python_slow_sync=1
 " ]] Jump on next class or function (normal, visual, operator modes)
 " [M Jump on previous class or method (normal, visual, operator modes)
 " ]M Jump on next class or method (normal, visual, operator modes)
-let g:pymode_rope = 0 
-" Documentation
-let g:pymode_doc = 0
-let g:pymode_doc_key = 'K'
-" Linting
-let g:pymode_lint = 0
-let g:pymode_lint_checkers = 'pylint,pep8,pyflakes'
-let g:pymode_lint_cwindow = 1
-let g:pymode_lint_ignore="E501,W601,C0110,C0111"
-let g:pymode_lint_write = 0
-" Support virtualenv
-let g:pymode_virtualenv = 1
-" Enable breakpoints plugin
-let g:pymode_breakpoint = 1
-let g:pymode_breakpoint_key = '<F7>'
-" Syntax highlighting
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_syntax_indent_errors = g:pymode_syntax_all
-let g:pymode_syntax_space_errors = g:pymode_syntax_all
-" Don't autofold code
-let g:pymode_folding = 0
-" Get possibility to run Python code
-let g:pymode_run = 1
-" Other options
-let g:pymode_options_colorcolumn = 0
-" CTRL-Z is Undo
-noremap <C-z> u
-inoremap <C-z> <C-O>u
-" CTRL-Y is Redo
-noremap <C-y> <C-R> 
-inoremap <C-y> <C-O><C-R>
-" CTRL-A is Select all
-noremap <C-a> gggH<C-O>G
-inoremap <C-a> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-a> <C-C>gggH<C-O>G
-onoremap <C-a> <C-C>gggH<C-O>G
-snoremap <C-a> <C-C>gggH<C-O>G
-xnoremap <C-a> <C-C>ggVG
-" CTRL-S is Quicksave command
-noremap <C-s> :update<CR>
-vnoremap <C-s> <C-C>:update<CR>
-inoremap <C-s> <C-O>:update<CR>
-nmap <F1> <nop>                 " unmap <F1> with help
-map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
-nnoremap <space> za
-nmap <F2> :set list!<CR>
-"#inoremap  <Up>     <NOP>
-"#inoremap  <Down>   <NOP>
-"#inoremap  <Left>   <NOP>
-"#inoremap  <Right>  <NOP>
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec 'python3' shellescape(@%, 1)<CR>
+
+let g:ale_linters = {'python':['flake8']}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'python':['black','isort']}
+let g:ale_fix_on_save = 1
+
+"#let g:pymode_rope = 0
+"#" Documentation
+"#let g:pymode_doc = 0
+"#let g:pymode_doc_key = 'K'
+"#" Linting
+"#let g:pymode_lint = 0
+"#let g:pymode_lint_checkers = 'pylint,pep8,pyflakes'
+"#let g:pymode_lint_cwindow = 1
+"#let g:pymode_lint_ignore="E501,W601,C0110,C0111"
+"#let g:pymode_lint_write = 0
+"#" Support virtualenv
+"#let g:pymode_virtualenv = 1
+"#" Enable breakpoints plugin
+"#let g:pymode_breakpoint = 1
+"#let g:pymode_breakpoint_key = '<F7>'
+"#" Syntax highlighting
+"#let g:pymode_syntax = 1
+"#let g:pymode_syntax_all = 1
+"#let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+"#let g:pymode_syntax_space_errors = g:pymode_syntax_all
+"#" Don't autofold code
+"#let g:pymode_folding = 0
+"#" Get possibility to run Python code
+"#let g:pymode_run = 1
+"#" Other options
+"#let g:pymode_options_colorcolumn = 0
+"#" CTRL-Z is Undo
+"#noremap <C-z> u
+"#inoremap <C-z> <C-O>u
+"#" CTRL-Y is Redo
+"#noremap <C-y> <C-R>
+"#inoremap <C-y> <C-O><C-R>
+"#" CTRL-A is Select all
+"#noremap <C-a> gggH<C-O>G
+"#inoremap <C-a> <C-O>gg<C-O>gH<C-O>G
+"#cnoremap <C-a> <C-C>gggH<C-O>G
+"#onoremap <C-a> <C-C>gggH<C-O>G
+"#snoremap <C-a> <C-C>gggH<C-O>G
+"#xnoremap <C-a> <C-C>ggVG
+"#" CTRL-S is Quicksave command
+"#noremap <C-s> :update<CR>
+"#vnoremap <C-s> <C-C>:update<CR>
+"#inoremap <C-s> <C-O>:update<CR>
+"nmap <F1> <nop>                 " unmap <F1> with help
+"map <F1> :NERDTreeToggle<CR>    " browse the list of files in the current directory
+"#nnoremap <space> za
+"nmap <F2> :set list!<CR>
+"#"#inoremap  <Up>     <NOP>
+"#"#inoremap  <Down>   <NOP>
+"#"#inoremap  <Left>   <NOP>
+"#"#inoremap  <Right>  <NOP>
+"noremap   <Up>     <NOP>
+"noremap   <Down>   <NOP>
+"noremap   <Left>   <NOP>
+"noremap   <Right>  <NOP>
