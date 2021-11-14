@@ -65,17 +65,38 @@ set display+=lastline " Display lastline instead of @
 set noerrorbells visualbell t_vb= " No annoying sound on errors
 autocmd BufWrite *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+"if empty(glob('~/.vim/autoload/plug.vim')) "Если vim-plug не стоит
+"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs "Создать директорию
+"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  "И скачать его оттуда
+"  "А после прогнать команду PlugInstall, о которой мы сейчас поговорим
+"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+"endif
+"
+"call plug#begin('~/.vim/bundle') "Начать искать плагины в этой директории
+"Plug 'lyokha/vim-xkbswitch'
+"call plug#end() "Перестатьэто делать
+"
+set keymap=russian-jcukenmac
+set iminsert=0
+set imsearch=0
+"
+"let g:XkbSwitchEnabled = 1 "только для ГУЙев
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
 "Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
+Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-fugitive'
+Plug 'pedrohdz/vim-yaml-folds'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'tpope/vim-fugitive'
+Plug 'ryanoasis/vim-devicons'
+"Plug 'lyokha/vim-xkbswitch'
+"call plug#end() "Перестатьэто делать
 "Plug 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
 "Plug 'hynek/vim-python-pep8-indent'           " PEP8 indent
 "colorschemes
@@ -85,6 +106,7 @@ Plug 'kaicataldo/material.vim'
 Plug 'ayu-theme/ayu-vim'
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'challenger-deep-theme/vim'
+Plug 'Yggdroot/indentLine'
 call plug#end()
 
 "colorscheme gruvbox
@@ -103,12 +125,15 @@ let g:airline_detect_modified=1
 let g:airline_detect_paste=1
 let g:airline_detect_crypt=1
 let g:airline_skip_empty_sections = 1
-"let g:airline_extensions = ['airline-ale']
-"let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#battery#enabled = 1
+"let g:airline_extensions = ['airline-ale']
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#hunks#enabled = 1
-
+let g:airline#extensions#keymap#enabled = 0 "Не показывать текущий маппинг
+let g:airline_section_z = "\ue0a1:%l/%L Col:%c" "Кастомная графа положения курсора
+let g:indentLine_char = '┊'
 
 let &t_SI.="\e[5 q" "SI = режим вставки
 let &t_SR.="\e[3 q" "SR = режим замены
@@ -136,7 +161,20 @@ let python_slow_sync=1
 let g:ale_linters = {'python':['flake8']}
 let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace'], 'python':['black','isort']}
 let g:ale_fix_on_save = 1
-
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_sign_error = '✘'
+let g:ale_sign_warning = '⚠'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_delay=0
+let g:ale_python_flake8_args="--ignore=E501,C901,E121"
+let g:ale_python_flake8_options="--ignore=E501,E228,E226,E261,E266,E128,E402,W503,E722 --max-line-length=248"
+"Для tmux
+"let g:slime_target = "tmux"
+"let g:slime_default_config = {"socket_name": get(split($TMUX, ","), 0), "target_pane": ":.1"}
+"Для обычного Вима
+let g:slime_target = "vimterminal"
 "#let g:pymode_rope = 0
 "#" Documentation
 "#let g:pymode_doc = 0
