@@ -144,6 +144,7 @@ plugins=(
     colored-man-pages
     command-not-found
 )
-export ZSH_THEME="powerlevel10k/powerlevel10k"
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#export ZSH_THEME="powerlevel10k/powerlevel10k"
+#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+export ZSH_THEME="spaceship"
 source $ZSH/oh-my-zsh.sh
