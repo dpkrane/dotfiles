@@ -66,28 +66,20 @@ set noerrorbells visualbell t_vb= " No annoying sound on errors
 autocmd BufWrite *.py normal m`:%s/\s\+$//e ``
 autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-"if empty(glob('~/.vim/autoload/plug.vim')) "Если vim-plug не стоит
-"  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs "Создать директорию
-"    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"  "И скачать его оттуда
-"  "А после прогнать команду PlugInstall, о которой мы сейчас поговорим
-"  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-"endif
-"
-"call plug#begin('~/.vim/bundle') "Начать искать плагины в этой директории
-"Plug 'lyokha/vim-xkbswitch'
-"call plug#end() "Перестатьэто делать
-"
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 set keymap=russian-jcukenmac
 set iminsert=0
 set imsearch=0
-"
-"let g:XkbSwitchEnabled = 1 "только для ГУЙев
-call plug#begin('~/.config/nvim/plugged')
+
+call plug#begin('~/.vim/plugins')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'ycm-core/YouCompleteMe'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'nvie/vim-flake8'
 Plug 'dense-analysis/ale'
 Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-fugitive'
@@ -95,10 +87,6 @@ Plug 'pedrohdz/vim-yaml-folds'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
-"Plug 'lyokha/vim-xkbswitch'
-"call plug#end() "Перестатьэто делать
-"Plug 'klen/python-mode'                       " Vim python-mode. PyLint, Rope, Pydoc, breakpoints from box
-"Plug 'hynek/vim-python-pep8-indent'           " PEP8 indent
 "colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'

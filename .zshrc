@@ -1,4 +1,4 @@
-source ~/.local/bin/virtualenvwrapper.sh
+#source ~/.local/bin/virtualenvwrapper.sh
 
 export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=/usr/bin/vim
@@ -132,7 +132,7 @@ add-zsh-hook preexec mzc_termsupport_preexec
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-export ZSH="/home/owner/.oh-my-zsh"
+export ZSH=$HOME/.oh-my-zsh
 zstyle ':omz:update' frequency 13
 zstyle ':omz:update' mode auto      # update automatically without asking
 ENABLE_CORRECTION="true"
