@@ -1,4 +1,4 @@
-#source ~/.local/bin/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 
 export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=/usr/bin/vim
@@ -132,7 +132,7 @@ add-zsh-hook preexec mzc_termsupport_preexec
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="/home/owner/.oh-my-zsh"
 zstyle ':omz:update' frequency 13
 zstyle ':omz:update' mode auto      # update automatically without asking
 ENABLE_CORRECTION="true"
@@ -143,8 +143,10 @@ plugins=(
     zsh-syntax-highlighting
     colored-man-pages
     command-not-found
+    docker
+    docker-compose
 )
-#export ZSH_THEME="powerlevel10k/powerlevel10k"
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-export ZSH_THEME="spaceship"
+export ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#export ZSH_THEME="spaceship"
 source $ZSH/oh-my-zsh.sh

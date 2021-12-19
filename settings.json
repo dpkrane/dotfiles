@@ -1,0 +1,16 @@
+{
+    "workbench.colorTheme": "Dracula",
+    "editor.fontFamily": "'JetBrains Mono'",
+    "editor.fontSize": 13,
+    "editor.letterSpacing": 1.2,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "'FiraMono Nerd Font'",
+    "workbench.iconTheme": "vscode-icons",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pycodestyleEnabled": true,
+    "python.linting.pylintEnabled": true,
+    "vsicons.dontShowNewVersionMessage": true,
+    "bracket-pair-colorizer-2.depreciation-notice": false,
+    "code-runner.runInTerminal": true,
+    "code-runner.preserveFocus": false,
+}
