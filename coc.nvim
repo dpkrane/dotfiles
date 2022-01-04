@@ -1,5 +1,7 @@
 :PlugInstall
-Устанавливаем nodejs и npm.
+#Устанавливаем nodejs и npm.
+Универсальная установка nodejs
+curl -sL install-node.now.sh/lts | bash
 Переходим в папку плагина coc.nvim и делаем sudo npm install -g yarn, затем yarn
 install.
 Загружаем vim и дела
