@@ -87,6 +87,7 @@ Plug 'pedrohdz/vim-yaml-folds'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
+Plug 'neoclide/coc.vim', {'branch':'release'}
 "colorschemes
 Plug 'morhetz/gruvbox'
 Plug 'mhartington/oceanic-next'
