@@ -1,9 +1,5 @@
-source ~/.local/bin/virtualenvwrapper.sh
-
-export WORKON_HOME=$HOME/.virtualenvs
 export EDITOR=/usr/bin/vim
 export VISAL=/usr/bin/vim
-export TERM=xterm-256color
 
 setopt correct                                                  # Auto correct mistakes
 setopt extendedglob                                             # Extended globbing. Allows using regular expressions with *
@@ -23,7 +19,7 @@ zstyle ':completion:*' rehash true                              # automatically 
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-
+DISABLE_UPDATE_PROMPT="true"
 HISTFILE=~/.zhistory
 HISTSIZE=10000
 SAVEHIST=10000
@@ -54,7 +50,8 @@ bindkey '^[[Z' undo                                             # Shift+tab undo
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
-alias gitu='git add . && git commit && git push'
+#alias gitu='git add . && git commit && git push'
+alias gpa='git add .; git commit -m "$1"; git push;'
 autoload -U compinit colors zcalc
 compinit -d
 colors
@@ -137,15 +134,28 @@ zstyle ':omz:update' frequency 13
 zstyle ':omz:update' mode auto      # update automatically without asking
 ENABLE_CORRECTION="true"
 plugins=(
+    ansible
+    colorize
+    kubectl
+    kubectx
+    helm
+    tmux
     git
     git-prompt
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-history-substring-search
     colored-man-pages
     command-not-found
     docker
     docker-compose
 )
+source <(kubectl completion zsh)
+source <(helm completion zsh)
+
+alias k=kubectl
+export ZSH_TMUX_AUTOSTART=true
+export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #export ZSH_THEME="spaceship"
