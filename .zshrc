@@ -154,6 +154,9 @@ source <(kubectl completion zsh)
 source <(helm completion zsh)
 
 alias k=kubectl
+alias tree="exa --tree"
+alias ll="exa -a --long --header --group"
+alias cat=bat
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_THEME="powerlevel10k/powerlevel10k"
