@@ -47,11 +47,6 @@ bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
 bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
 bindkey '^[[Z' undo                                             # Shift+tab undo last action
-alias cp="cp -i"                                                # Confirm before overwriting something
-alias df='df -h'                                                # Human-readable sizes
-alias free='free -m'                                            # Show sizes in MB
-#alias gitu='git add . && git commit && git push'
-alias gpa='git add .; git commit -m "$1"; git push;'
 autoload -U compinit colors zcalc
 compinit -d
 colors
@@ -153,13 +148,26 @@ plugins=(
 source <(kubectl completion zsh)
 source <(helm completion zsh)
 
-alias k=kubectl
-alias tree="exa --tree"
-alias ll="exa -a --long --header --group"
-alias cat=bat
 export ZSH_TMUX_AUTOSTART=true
 export ZSH_TMUX_AUTOCONNECT=true
 export ZSH_THEME="powerlevel10k/powerlevel10k"
+
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 #export ZSH_THEME="spaceship"
 source $ZSH/oh-my-zsh.sh
+alias cp="cp -i"                                                # Confirm before overwriting something
+alias df='df -h'                                                # Human-readable sizes
+alias free='free -m'                                            # Show sizes in MB
+#alias gitu='git add . && git commit && git push'
+alias gpa='git add .; git commit -m "$1"; git push;'
+alias k=kubectl
+alias d=docker
+alias ls='exa'                                                         # ls
+alias l='exa -lbF --git'                                               # list, size, type, git
+alias ll='exa -lbGF --git'                                             # long list
+alias llm='exa -lbGF --git --sort=modified'                            # long list, modified date sort
+alias la='exa -lbhHigUmuSa --time-style=long-iso --git --color-scale'  # all list
+alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + extended list
+# one column, just names
+alias lt='exa --tree --level=2'                                         # tree
+alias cat=bat
