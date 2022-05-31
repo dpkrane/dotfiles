@@ -1,31 +1,61 @@
 {
-    "workbench.colorTheme": "Dracula",
-    "editor.fontFamily": "'JetBrains Mono'",
-    "editor.fontSize": 13,
-    "editor.letterSpacing": 1.2,
-    "editor.fontLigatures": true,
-    "terminal.integrated.fontFamily": "'FiraMono Nerd Font'",
-    "workbench.iconTheme": "vscode-icons",
-    "python.linting.flake8Enabled": true,
-    "python.linting.pycodestyleEnabled": true,
-    "python.linting.pylintEnabled": true,
-    "vsicons.dontShowNewVersionMessage": true,
-    "bracket-pair-colorizer-2.depreciation-notice": false,
-    "code-runner.runInTerminal": true,
-    "code-runner.preserveFocus": false,
-    "explorer.confirmDelete": false,
-    "workbench.startupEditor": "none",
-    "terminal.integrated.fontSize": 10,
-    "files.exclude": {
-        "**/.*": true
-    },
-    "editor.minimap.enabled": false,
-    "editor.formatOnPaste": true,
-    "editor.formatOnSave": true,
-    "editor.formatOnType": true,
+  "workbench.colorTheme": "Dracula",
+  "editor.scrollbar.horizontal": "hidden",
+  "editor.scrollbar.vertical": "hidden",
+  "editor.overviewRulerBorder": false,
+  "workbench.activityBar.visible": true,
+  "editor.glyphMargin": false,
+  "workbench.sideBar.location": "right",
+  "editor.fontFamily": "'JetBrains Mono'",
+  "editor.fontSize": 13,
+  "editor.letterSpacing": 1.2,
+  "editor.fontLigatures": true,
+  "terminal.integrated.fontFamily": "'FiraMono Nerd Font'",
+  "workbench.iconTheme": "vscode-icons",
+  "python.linting.flake8Enabled": true,
+  "python.linting.pycodestyleEnabled": true,
+  "python.linting.pylintEnabled": true,
+  "vsicons.dontShowNewVersionMessage": true,
+  "bracket-pair-colorizer-2.depreciation-notice": false,
+  "code-runner.runInTerminal": true,
+  "code-runner.preserveFocus": false,
+  "explorer.confirmDelete": false,
+  "workbench.startupEditor": "none",
+  "terminal.integrated.fontSize": 10,
+  "files.exclude": {
+    "**/.*": true
+  },
+  "editor.minimap.enabled": false,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "files.trimTrailingWhitespace": true,
+  "redhat.telemetry.enabled": false,
+  "files.associations": {
+    "*.yml": "ansible"
+  },
+  "[shellscript]": {
+    "editor.rulers": [
+      {
+        "column": 72,
+        "color": "#1e751633",
+      },
+      {
+        "column": 80,
+        "color": "#c2790b99",
+      },
+      {
+        "column": 132,
+        "color": "#a10d2d99"
+      }
+    ],
+    "editor.wordWrap": "off",
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
-    "redhat.telemetry.enabled": false,
-    "files.associations": {
-        "*.yml": "ansible"
-    }
+    "editor.renderWhitespace": "boundary",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+  }
 }
