@@ -171,3 +171,4 @@ alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 # one column, just names
 alias lt='exa --tree --level=2'                                         # tree
 alias cat=bat
+MC_SKIN=/home/owner/.mc/lib/solarized.ini
