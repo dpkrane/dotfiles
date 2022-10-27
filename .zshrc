@@ -171,4 +171,38 @@ alias lx='exa -lbhHigUmuSa@ --time-style=long-iso --git --color-scale' # all + e
 # one column, just names
 alias lt='exa --tree --level=2'                                         # tree
 alias cat=bat
-MC_SKIN=/home/owner/.mc/lib/solarized.ini
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=cyan"
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[assign]="fg=yellow"
+ZSH_HIGHLIGHT_STYLES[commandseparator]="fg=red"
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=green,bold"
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=green"
+ZSH_HIGHLIGHT_STYLES[globbing]="fg=magenta"
+ZSH_HIGHLIGHT_STYLES[global-alias]="fg=yellow,bold"
+ZSH_HIGHLIGHT_STYLES[history-expansion]="fg=magenta"
+ZSH_HIGHLIGHT_STYLES[redirection]="fg=red"
+ZSH_HIGHLIGHT_STYLES[path]="fg=white,underline"
+ZSH_HIGHLIGHT_STYLES[path_pathseparator]="fg=white,bold,underline"
+
+setopt APPEND_HISTORY SHARE_HISTORY INC_APPEND_HISTORY HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+alias vi="vim"
+alias m="less "
+alias -g M="| less"
+alias -g W="| wc -l | sed 's/ //g'"
+export PAGER=less
+export LESSHISTFILE=/tmp/.lesshst
+export LESSKEY=/tmp/.lesskey
+export LESS=RWXij2
+export LESS=${LESS}"Ps?f%f .?m(%i/%m) .%lt-%lb?L/%L. [%bB?B/%B.]?B %pB\%.?x N\:%x.%t"
+
+GREP_ARGS=(--colour=always --with-filename --line-number --dereference-recursive --binary-files=without-match --exclude-dir=.git --exclude-dir=.tags)
+alias -g G="| grep --colour=always"
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/home/owner/yandex-cloud/path.bash.inc' ]; then source '/home/owner/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/home/owner/yandex-cloud/completion.zsh.inc' ]; then source '/home/owner/yandex-cloud/completion.zsh.inc'; fi

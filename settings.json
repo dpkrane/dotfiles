@@ -1,5 +1,5 @@
 {
-  "workbench.colorTheme": "Dracula",
+  "workbench.colorTheme": "SynthWave '84",
   "editor.scrollbar.horizontal": "hidden",
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
@@ -12,9 +12,6 @@
   "editor.fontLigatures": true,
   "terminal.integrated.fontFamily": "'FiraMono Nerd Font'",
   "workbench.iconTheme": "vscode-icons",
-  "python.linting.flake8Enabled": true,
-  "python.linting.pycodestyleEnabled": true,
-  "python.linting.pylintEnabled": true,
   "vsicons.dontShowNewVersionMessage": true,
   "bracket-pair-colorizer-2.depreciation-notice": false,
   "code-runner.runInTerminal": true,
@@ -22,40 +19,25 @@
   "explorer.confirmDelete": false,
   "workbench.startupEditor": "none",
   "terminal.integrated.fontSize": 10,
-  "files.exclude": {
-    "**/.*": true
-  },
   "editor.minimap.enabled": false,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.formatOnType": true,
   "files.trimTrailingWhitespace": true,
   "redhat.telemetry.enabled": false,
-  "files.associations": {
-    "*.yml": "ansible"
-  },
-  "[shellscript]": {
-    "editor.rulers": [
-      {
-        "column": 72,
-        "color": "#1e751633",
-      },
-      {
-        "column": 80,
-        "color": "#c2790b99",
-      },
-      {
-        "column": 132,
-        "color": "#a10d2d99"
-      }
-    ],
-    "editor.wordWrap": "off",
-    "files.eol": "\n",
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "files.trimTrailingWhitespace": true,
-    "editor.renderWhitespace": "boundary",
-    "editor.insertSpaces": true,
-    "editor.tabSize": 2,
-  }
+  "editor.rulers": [
+    {
+      "column": 80,
+      "color": "#c2790b99",
+    }
+  ],
+  "editor.wordWrap": "off",
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
 }
