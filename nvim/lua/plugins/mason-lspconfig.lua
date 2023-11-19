@@ -1,10 +1,13 @@
 local opts = {
 	ensure_installed = {
-		"efm",
-		"bashls",
-		"pyright",
-		"lua_ls",
-		"jsonls",
+   "ansiblels",
+   "bashls",
+   "helm_ls",
+    "terraformls",
+    "dockerls",
+    "docker_compose_language_service",
+    "yamlls",
+    "pylsp",
 	},
 
 	automatic_installation = true,
